@@ -1,0 +1,25 @@
+{% extends 'stats/index.html' %}
+{% block content %}
+    <div class="container prediction-container">
+        <h1>Forebet Predictions</h1>
+        <div class="predictions">
+            <!-- The predictions list is traversed-->
+            {% if predictions %}
+                <ul>
+                    {% for prediction in predictions %}
+                        <li>
+                            <p><strong>{{ prediction.hometeam }}</strong> vs <strong>{{ prediction.awayteam }}</strong></p>
+                            <p>Predicted Score: {{ prediction.predictedscore }}</p>
+                            <p>Date: {{ prediction.date }}</p>
+                            <!--<p>Location: {{ prediction.location }}</p>
+                            <p>Weather: {{ prediction.weather }}</p>-->
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No predictions available.</p>
+            {% endif %}
+        </div>
+        <a href="{% url 'index' %}" class="back-link">Back</a>
+    </div>
+{% endblock %}

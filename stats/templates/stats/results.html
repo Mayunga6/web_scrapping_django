@@ -1,0 +1,101 @@
+{% extends 'stats/index.html '%}
+{% block content %}
+    <div class="container">
+        <h1>Statistics for Analysing match between {{ home_team }} vs {{ away_team }}</h1>
+
+        <div class="section-title">Home Team Previous Matches</div>
+        <ul>
+            {% if statistics.home_team_previous_matches %}
+                {% for match in statistics.home_team_previous_matches %}
+                <li>{{ match.date }}: {{ match.opponents }} - {{ match.result }} (League Position: {{ match.league_position }})</li>
+                {% endfor %}
+            {% else %}
+                <li class="Error_class">No previous matches found.</li>
+            {% endif %}
+        </ul>
+
+        <div class="section-title">Away Team Previous Matches</div>
+        <ul>
+            {% if statistics.away_team_previous_matches %}
+                {% for match in statistics.away_team_previous_matches %}
+                    <li>{{ match.date }}: {{ match.opponents }} - {{ match.result }} (League Position: {{ match.league_position }})</li>
+                {% endfor %}
+            {% else %}
+                <li>No previous matches found.</li>
+            {% endif %}
+        </ul>
+
+        <div class="section-title">Head to Head</div>
+        <ul>
+            {% if statistics.head_to_head %}
+                {% for match in statistics.head_to_head %}
+                <li>{{ match.date }}: {{ match.opponents }} - {{ match.result }}</li>
+                {% endfor %}
+            {% else %}
+                <li class="Error_class">No head to head matches found.</li>
+            {% endif %}
+        </ul>
+
+        <div class="section-title">Home Team Form</div>
+        <ul>
+            {% if statistics.home_team_form %}
+                {% for form in statistics.home_team_form %}
+                <li>{{ form }}</li>
+                {% endfor %}
+            {% else %}
+                <li class="Error_class">No form data found.</li>
+            {% endif %}
+        </ul>
+
+        <div class="section-title">Away Team Form</div>
+        <ul>
+            {% if statistics.away_team_form %}
+                {% for form in statistics.away_team_form %}
+                <li>{{ form }}</li>
+                {% endfor %}
+            {% else %}
+                <li class="Error_class">No form data found.</li>
+            {% endif %}
+        </ul>
+
+        <div class="section-title">Home Team Players</div>
+        <ul>
+            {% if statistics.home_team_players %}
+                {% for player in statistics.home_team_players %}
+                <li>{{ player.0 }}: Goals: {{ player.1 }}, Assists: {{ player.2 }}, Yellow Cards: {{ player.3 }}, Red Cards: {{ player.4 }}</li>
+                {% endfor %}
+            {% else %}
+                <li class="Error_class">No player data found.</li>
+            {% endif %}
+        </ul>
+
+        <div class="section-title">Away Team Players</div>
+        <ul>
+            {% if statistics.away_team_players %}
+                {% for player in statistics.away_team_players %}
+                <li>{{ player.0 }}: Goals: {{ player.1 }}, Assists: {{ player.2 }}, Yellow Cards: {{ player.3 }}, Red Cards: {{ player.4 }}</li>
+                {% endfor %}
+            {% else %}
+                <li class="Error_class">No player data found.</li>
+            {% endif %}
+        </ul>
+
+        <div class="section-title">Match Statistics</div>
+        <ul>
+            {% if statistics.match_stats %}
+                <li>Set Pieces: {{ statistics.match_stats.set_pieces }}</li>
+                <li>Attacks: {{ statistics.match_stats.attacks }}</li>
+                <li>Blocked Attacks: {{ statistics.match_stats.blocked_attacks }}</li>
+                <li>Shots: {{ statistics.match_stats.shots }}</li>
+                <li>Shots on Target: {{ statistics.match_stats.shots_on_target }}</li>
+                <li>Ball Possession: {{ statistics.match_stats.ball_possession }}</li>
+            {% else %}
+                <li class="Error_class">No match statistics found.</li>
+            {% endif %}
+        </ul>
+
+        <a href="{% url 'index' %}" class="back-link">Back</a>
+
+    </div>
+{% endblock %}
+

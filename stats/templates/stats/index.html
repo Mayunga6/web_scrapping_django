@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Soccer Match Statistics</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'stats/styles.css' %}">
+</head>
+<body>
+    {% block content %}
+        <div class="container">
+            <h1>Enter Team Details</h1>
+            <form action="{% url 'results' %}" method="get">
+                <label for="home_team_country">Home Team Country:</label>
+                <input type="text" id="home_team_country" name="home_team_country" required>
+                <br>
+                <label for="home_team">Home Team:</label>
+                <input type="text" id="home_team" name="home_team" required>
+                <br>
+                <label for="away_team_country">Away Team Country:</label>
+                <input type="text" id="away_team_country" name="away_team_country" required>
+                <br>
+                <label for="away_team">Away Team:</label>
+                <input type="text" id="away_team" name="away_team" required>
+                <br>
+                <label for="match_date">Match Date:</label>
+                <input type="date" id="match_date" name="match_date" required>
+                <br>
+                <button type="submit">Get Statistics</button>
+            </form>
+            <form action="{% url 'predictions' %}" method="get">
+                <a><button type="submit">Get Today's predictions</button></a>
+            </form>
+        </div>
+    {% endblock %}
+</body>
+</html>
